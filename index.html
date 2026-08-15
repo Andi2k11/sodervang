@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Södervång — Seating Chart Editor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="container">
+    <h1>Södervång — Seating Chart Editor</h1>
+  </header>
+
+  <main class="container row" role="main" style="gap:24px">
+    <aside class="card" style="width:280px">
+      <h2>Controls</h2>
+      <div class="stack">
+        <div>
+          <label for="roomName">Room name</label>
+          <input id="roomName" type="text" placeholder="Ny sal">
+        </div>
+        <div>
+          <button id="newRoom">New room</button>
+          <button id="exportBtn">Export JSON</button>
+          <button id="importBtn">Import JSON</button>
+          <input id="importFile" type="file" accept="application/json" style="display:none">
+        </div>
+        <div>
+          <button id="addGroup">Add group</button>
+        </div>
+      </div>
+    </aside>
+
+    <section class="card" style="flex:1">
+      <h2>Room editor</h2>
+      <div id="canvas" class="card" style="min-height:360px">Canvas: create a room to begin.</div>
+    </section>
+  </main>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
