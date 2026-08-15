@@ -1,0 +1,158 @@
+/* Global project stylesheet
+   Purpose: shared base styles for the project — typography, layout,
+   color system, accessibility helpers, form styles and utilities.
+   Follows WCAG-friendly defaults and reduced-motion preferences.
+*/
+
+/* ==========================
+   Design tokens / variables
+   ========================== */
+:root{
+   /* Vellinge brand colors */
+   --vellinge-blue: #0061A1;
+   --vellinge-light-blue: #4E7DA1;
+   --vellinge-pink: #D1787D;
+   --vellinge-purple: #76405D;
+   --vellinge-yellow: #EEBA00;
+   --vellinge-green: #317C35;
+   --vellinge-white: #FFFFF9;
+
+  /* Color palette (WCAG-friendly by default) */
+  --color-bg: #ffffff;
+  --color-surface: #f7f7f8;
+  --color-text: #0b1a2b;
+  --color-muted: #6b7280;
+   --color-primary: var(--vellinge-blue);
+   --color-primary-strong: var(--vellinge-light-blue);
+  --color-success: #0f9d58;
+  --color-warning: #f59e0b;
+  --color-danger: #dc2626;
+
+  /* Spacing scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  /* Type */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+  --base-font-size: 16px;
+  --heading-weight: 600;
+}
+
+/* Dark mode support (opt-in via .dark on <html> or media query) */
+@media (prefers-color-scheme: dark){
+  :root{
+    --color-bg: #0b1220;
+    --color-surface: #0f1724;
+    --color-text: #e6eef8;
+    --color-muted: #9aa6b2;
+    --color-primary: #4f8bff;
+    --color-primary-strong: #3b72e6;
+  }
+}
+
+
+/* ==========================
+   Reset / sensible defaults
+   ========================== */
+*{box-sizing: border-box}
+html,body{height:100%}
+html{font-size:var(--base-font-size);line-height:1.45;-webkit-text-size-adjust:100%}
+body{margin:0;font-family: Calibri, Arial, sans-serif; background:var(--color-bg);color:var(--color-text);}
+
+img,video,svg{max-width:100%;height:auto;display:block}
+a{color:var(--color-primary);text-decoration:underline}
+
+/* Accessible focus styles */
+:focus{outline: none}
+:focus-visible{outline:3px solid color-mix(in srgb, var(--color-primary) 60%, transparent);outline-offset:3px}
+
+
+/* ==========================
+   Layout helpers
+   ========================== */
+.container{max-width:1100px;margin-left:auto;margin-right:auto;padding-left:var(--space-md);padding-right:var(--space-md)}
+.stack{display:flex;flex-direction:column;gap:var(--space-md)}
+.row{display:flex;flex-wrap:wrap;gap:var(--space-md)}
+.card{background:var(--color-surface);border-radius:var(--radius-md);padding:var(--space-md);box-shadow:0 1px 2px rgba(2,6,23,0.04)}
+
+
+/* ==========================
+   Typography
+   ========================== */
+h1,h2,h3,h4,h5{margin:0 0 calc(var(--space-sm));font-weight:var(--heading-weight);line-height:1.15}
+h1{font-size:1.875rem}
+h2{font-size:1.5rem}
+h3{font-size:1.25rem}
+p{margin:0 0 var(--space-md)}
+small{font-size:0.875rem;color:var(--color-muted)}
+
+/* Make headings easy to scan for assistive tech */
+header h1, main h2{margin-top:0}
+
+
+/* ==========================
+   Forms & Controls
+   ========================== */
+label{display:block;margin-bottom:var(--space-xs);font-weight:600}
+input[type="text"], input[type="email"], input[type="number"], textarea, select{
+  width:100%;padding:10px;border-radius:var(--radius-sm);border:1px solid #d1d5db;background:transparent;color:var(--color-text);
+}
+textarea{min-height:100px}
+button{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:6px;border:0;background:var(--color-primary);color:#fff;cursor:pointer}
+button:disabled{opacity:0.6;cursor:not-allowed}
+
+/* Validation states */
+.is-invalid{border-color:var(--color-danger);box-shadow:0 0 0 3px rgba(220,38,38,0.08)}
+.helper{font-size:0.875rem;color:var(--color-muted)}
+
+
+/* ==========================
+   Accessible table defaults
+   ========================== */
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border:1px solid rgba(11,26,43,0.06);text-align:left}
+th{background:var(--color-surface);font-weight:600}
+
+
+/* ==========================
+   Utilities
+   ========================== */
+.visually-hidden{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.text-center{text-align:center}
+.muted{color:var(--color-muted)}
+
+
+/* ==========================
+   Accessibility & motion
+   ========================== */
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}
+}
+
+
+/* ==========================
+   Responsive helpers
+   ========================== */
+@media (max-width:640px){
+  h1{font-size:1.5rem}
+  .container{padding-left:var(--space-sm);padding-right:var(--space-sm)}
+}
+
+
+/* ==========================
+   Small components (seating chart specific helpers)
+   ========================== */
+.seat{width:48px;height:48px;border-radius:6px;background:#fff;border:1px solid rgba(11,26,43,0.08);display:flex;align-items:center;justify-content:center;font-weight:600}
+.seat.occupied{background:var(--color-muted);color:#fff}
+.seat.selected{background:var(--color-primary-strong);color:#fff}
+
+/* end */
