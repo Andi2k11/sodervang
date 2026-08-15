@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Södervång — Seating Chart Editor</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=168" id="main-style">
 </head>
 <body>
   <header class="container">
@@ -38,5 +38,14 @@
   </main>
 
   <script src="seatingchart.js" type="module"></script>
+  <script>
+    // Simple cache-buster: replace stylesheet query with build timestamp
+    (function(){
+      const el = document.getElementById('main-style');
+      if(!el) return;
+      const ts = Date.now();
+      el.href = 'style.css?v=' + ts;
+    })();
+  </script>
 </body>
 </html>
